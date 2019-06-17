@@ -1,280 +1,397 @@
+
 <?php
+	require_once('connect.php');
+	$sql="SELECT * FROM table_blogs";
+	$sql1="SELECT * FROM table_book";
+	$sql2="SELECT * FROM images";
+	$result=mysqli_query($con,$sql);
+	$res=mysqli_query($con,$sql1);
+	$rest=mysqli_query($con,$sql2);
 
-session_start();
-   $con=mysqli_connect("localhost","root","","mindunwind");
+###### Fetch Results From Table ########
 
- if(isset($_POST['submit']))
- { 
-    
-     $user=$_POST['email'];
-     $password=$_POST['pass'];
-     $sql="select * from account where email='$user' and password='$password'";
-     $res=mysqli_query($con,$sql);
-     
-     $cnt=mysqli_num_rows($res);
-     if($cnt>0)
-     {
-          $_SESSION['user']=true;
-           
-         header('location:../index.html');
-                    
-     }
-     else
-     {
-         echo "<script>window.alert('Invalid username or password')";
-         echo "</script>";
-         //header('location:index.php');
-     }
-     
-
- }
-
-?>
-
-
-<!DOCTYPE html>
+	?>
+<!doctype html>
 <html class="no-js" lang="en">
-    <head>
-            <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" href="./assets/img/apple-icon.png">
-    <link rel="icon" href="./assets/img/favicon.png">
-        
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>
-       MindUnwind_login
-    </title>
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.0">
-    <!-- Documentation extras -->
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="./assets/assets-for-demo/demo.css" rel="stylesheet" />
-    <link href="./assets/assets-for-demo/vertical-nav.css" rel="stylesheet" />
 
-        
-        
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-    
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <meta name="description" content="Fullscreen Background Image Slideshow with CSS3 - A Css-only fullscreen background image slideshow" />
-        <meta name="keywords" content="css3, css-only, fullscreen, background, slideshow, images, content" />
-        <meta name="author" content="Codrops" />
-        <link rel="shortcut icon" href="../favicon.ico"> 
-        <link rel="stylesheet" type="text/css" href="css/demo.css" />
-        <link rel="stylesheet" type="text/css" href="css/style1.css" />
-		<script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
-         <script type="text/javascript">
 
-             
-             
-             
-             
-             </script>
-        
-        <script type="text/javascript">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="author" content=""/>
+<!-- Document Title -->
+<title>Succcess Talks</title>
 
-    $(document).ready(function(){
+<!-- StyleSheets -->
+<link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/icomoon.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/color-1.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/transition.css">
 
-        $("#myModalfi").modal('show');
+<!-- Online Lib -->
+<link rel="stylesheet" href="../../../../www.atlasestateagents.co.uk/css/tether.min.css">
+<script src="../../../../www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
 
-    });
+<!-- Switcher CSS -->
+<link href="switcher/switcher.css" rel="stylesheet" type="text/css"/> 
+<link rel="stylesheet" id="skins" href="css/default.css" type="text/css" media="all">
 
-</script>
-    
+<!-- FontsOnline -->
+<link href='https://fonts.googleapis.com/css?family=Merriweather:300,300italic,400italic,400,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic,900italic,900,100italic,100' rel='stylesheet' type='text/css'>
 
-        
-        
+<!-- JavaScripts -->
+<script src="js/vendor/modernizr.js"></script>
+</head>
+<body>
 
-        
-       
+<!-- Wrapper -->
+<div class="wrapper push-wrapper">
 
-        
-    </head>
-    <body id="page">
-        
-        <ul class="cb-slideshow">
-            <li><span>Image 01</span><div></div></li>
-            <li><span>Image 02</span><div></div></li>
-            <li><span>Image 03</span><div></div></li>
-            <li><span>Image 04</span><div></div></li>
-            <li><span>Image 05</span><div></div></li>
-            <li><span>Image 06</span><div></div></li>
-        </ul>
-        
-        
-        
-                    
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <div class="container">
-            <!-- Codrops top bar -->
-            <div class="codrops-top">
-                <!--a href="http://tympanus.net/Development/RockingLetters/">
-                    <strong>&laquo; Previous Demo: </strong>Rocking Letters with CSS3 &amp; jQuery
-                </a-->
-                <!--span class="right">
-                    <a href="http://www.flickr.com/photos/markjsebastian/" target="_blank">Photography by Mark Sebastian</a>
-                    <a href="http://creativecommons.org/licenses/by-sa/2.0/deed.en" target="_blank">CC BY-SA 2.0</a>
-                    <a href="http://tympanus.net/codrops/2012/01/02/fullscreen-background-image-slideshow-with-css3/">
-                        <strong>Back to the Codrops Article</strong>
-                    </a>
-                </span>
-                <div class="clr"></div>
-            </div><!--/ Codrops top bar -->
-            <header>
-                <!--h1>CSS3 <span>Fullscreen Slideshow</span></h1>
-                <h2>A CSS-only slideshow for background images</h2-->
-				
-					<!--a href="#" class="current-demo">Demo 1</a>
-					<a href="index2.html">Demo 2</a>
-					<a href="index3.html">Demo 3</a-->
-              
-              <div class="modal fade" id="myModalfi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <center><h5 class="modal-title" id="exampleModalLabel" style="font-size: 15px; color: blue;">About MindUnwind</h5></center>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <img src="1.jpg" alt="logo" height="35%" width="35%">
-          
-        <hr>
-          <p style="color: blue">A web portal that strives to provide support to demotivated and depressed class students and also to studnets of all intellect by being an analyzer, a counselor friend, an aider, a motivator and a social skill developer,thereby enriching their lives with optimism, self-conviction and values of humanity..</p>
-  
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-size: 12px;">Close</button>
-        <button type="button" style="font-size:10px;" style="font-size: 10px" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-  Ok Got it
-</button>
-      </div> 
-    
-    </div>
-  </div>
-    </div>
-</div>
-                
-       
-      
-                
-                
-                
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 15px;">Log In</h5>
-          <label name="label" id="la" disabled> </label>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        
-           <form method="post" action="index.php">
-  <div class="form-group">
-    
-    <input type="uname" class="form-control" id="exampleInputEmail1"  placeholder="Enter Email here" name="email" required>
-      </div>
-             
-             
-  <div class="form-group">
-    
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder=" Type Password" name="pass" required>
-  </div>
- 
+	<!-- Header -->
+	
 
-  
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-size: 12px;">Close</button>
-        <input type="submit" class="btn btn-primary" name="submit" value="Submit" style="font-size: 12px;">
-      </div> 
-          </form>
-    </div>
-  </div>
-    </div>
-</div>
-        
-        
-                    
-                    
-                    
-                    
+		<!-- Nav -->
+		<nav class="nav-holder style-1">
+			<div class="container">
+				<img  src="images/banner/successtalks.jpg" style="width: 20%;height: 20%;">
+				<!--div class="mega-dropdown-wrapper">
 
+				<h1 style="font-style: italic;">SUCCESS TALKS</h1>
+					</div-->
+				</div>
+			</nav>
+
+		<!--BANNER-->
+		<div id="main-slider" class="main-slider">
+
+			<!-- Item -->
+			<div class="item">
+				<img src="images/banner/bg-1.jpg" alt="">
+				<div class="banner-overlay">
+					<div class="container p-relative">
+						
+						<!-- Layer Img -->
+						<div class="layer-img">
+							<img src="images/banner/layer-1.png" alt="">
+						</div>
+						<!-- Layer Img -->
+
+						<!-- caption -->
+						<div class="caption style-1 position-center-x">
+							<h1>Donot Wait for your ship to come in<br>SWIM OUT TO IT...</h1>
+							
+							<a href="#" class="btn-1">Learn more<i class="fa fa-arrow-circle-right"></i></a> 
+						</div>
+						<!-- caption -->
+
+					</div>
+				</div>
+			</div>
+			<!-- Item -->
+
+			<!-- Item -->
+			<div class="item">
+				<img src="images/banner/bg-2.jpg" alt="">
+				<div class="banner-overlay">
+					<div class="container position-center-center">
+
+						<!-- caption -->
+						<div class="caption style-2">
+							<h1>Reading a book is like <span>Re Writing it for yourself</span></h1>
+							<p>A Cambridge academic claims to have found the first use of a ‘brilliant innovation’ that has endured as a mark of incomplete speech</p>
+						</div>
+						<!-- caption -->
+
+					</div>
+				</div>
+			</div>
+			<!-- Item -->
+
+		</div>
+		<!--BANNER-->
+
+	</header>
+	<!-- Header -->
+
+	<!-- Main Content -->
+	<main class="main-content">
+	<!-- Upcoming Release -->
+	<section class="upcoming-release">
+	<!-- Book Collections -->
+	<section class="book-collection">
+			<div class="container">
+				<div class="row">
+				<!-- Book Collections Tabs -->
+					<div id="book-collections-tabs">
+					<!-- collection Name -->
+						<div class="col-lg-3 col-sm-12">
+							<div class="sidebar">
+								<h4>Top Books Catagories</h4>
+								<ul>
+								<li>
+									<a href="#">Science</a></li>
+									<li><a href="#">Self help</a></li>
+									<li><a href="#">Fictional</a></li>
+									<li><a href="#">Motivational</a></li>
+									<li><a href="#">Inspirational</a></li>
+									
+								</ul>
+							</div>
+						</div>
+			<!-- collection Name -->
+			<div class="col-lg-9 col-sm-12">
+				<div class="collection">
+							<!-- Secondary heading -->
+							<div class="sec-heading">
+								<h3><span class="theme-color">Books</span> Collection</h3>
+								<a class="view-all" href="#">View All<i class="fa fa-angle-double-right"></i></a>
+							</div>
+							<!-- Secondary heading -->
+
+						
+			<!-- Collection Content -->
+			<div class="collection-content">
+				 	<?php
+						while ($row = mysqli_fetch_assoc($res)) 
+									{
+									$title=$row['bk_title'];
+									$bid=$row['bk_id'];
+									$bk_author=$row['bk_img'];
+									$website=$row['bk_link'];
+									$preview=$row['bk_preview'];
+									?>	
+			   <ul>
+			  
+
+			   	<li>
+				<div class="s-product">
+					<div class="s-product-img">
+						<div class="blog-style-1" style="margin: auto 0">
+			            	<?php echo '<div class="gallery"><img height="200px;" width="180px;" src="images/products-collection/img-'.$bid.'.jpg" alt="">
+								    <div class="s-product-hover">
+									    <div class="position-center-x"><p><a class="btn-1 sm shadow-0" data-toggle="modal" target="_blank" href="'.$preview.'">Quick view</a></p>
+									    </div>
+						            </div><a href="'.$website.'" target="_black" ><b>'.$title .'</b></a>'.$bk_author.'
+						            
+						        </div>';
+                                     ?>
+					        </div>
+					    </div>
+					</div>
+
+					</li>
+					
+					</ul>
+
+					<?php 
+		        	} 
+		        	?>
+
+					</div>
 					
 
-            </header>
-            
-        </div>
-            
-            <!--   Core JS Files   -->
-    <script src="./assets/js/core/jquery.min.js"></script>
-    <script src="./assets/js/core/popper.min.js"></script>
-    <script src="./assets/js/bootstrap-material-design.js"></script>
-    <!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
-    <script src="./assets/js/plugins/moment.min.js"></script>
-    <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-    <script src="./assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
-    <!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-    <script src="./assets/js/plugins/nouislider.min.js"></script>
-    <!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
-    <script src="./assets/js/material-kit.js?v=2.0.0"></script>
-    <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
-    <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
-    <script>
-        $(document).ready(function() {
-            materialKitDemo.initFormExtendedDatetimepickers();
-            // Sliders for demo purpose in refine cards section
-            var slider = document.getElementById('sliderRegular');
+				
+				
+								<!-- Collection Content -->
 
-            noUiSlider.create(slider, {
-                start: 40,
-                connect: [true, false],
-                range: {
-                    min: 0,
-                    max: 100
-                }
-            });
+							</div>
+						</div>
+						<!-- Collection Content -->
 
-            var slider2 = document.getElementById('sliderDouble');
+					</div>
+					<!-- Book Collections Tabs -->
 
-            noUiSlider.create(slider2, {
-                start: [20, 60],
-                connect: true,
-                range: {
-                    min: 0,
-                    max: 100
-                }
-            });
-        });
-    </script>
+				</div>
+			</div>
+		</section>
+		<!-- Book Collections --> 
 
-        </div>
-    </body>
+		
+
+		
+		<!-- Blog Nd Gallery-->
+<section class="tc-padding">
+	<div class="container">
+        <div class="row">
+		      			      	<!-- Blog -->
+		        	<!-- Blog -->
+		        	<div class="col-lg-4 col-xs-12">
+
+		            <!-- Secondary heading -->
+		      		<div class="sec-heading">
+		      			<h3>Latest <span class="theme-color">Blog</span> Post</h3>
+		      		</div>
+		      		<!-- Secondary heading -->
+
+		      		<!-- Blog list -->
+		            <div class="blog-style-1">
+		            		<?php
+
+							while ($row = mysqli_fetch_assoc($result)) 
+							{
+							$b_title=$row['blog_title'];
+							$b_id=$row['blog_id'];
+							$b_author=$row['blog_author'];
+							$b_link=$row['blog_img'];
+							?>
+
+			             <div class="post-box">
+			                <?php echo '<div class="thumb"><img src="images/blog/'.$b_id.'.jpg" alt="" width=150px heigth=120px></div>';?>
+			                <div class="text-column"> <strong><i class="fa fa-user" aria-hidden="true"></i><?php echo $b_author;?></strong>
+			                <?php echo "<a href='$b_link'target='_blank' >$b_title</a>";?>
+
+			                <span><i class="fa fa-clock-o" aria-hidden="true"></i>3 hour ago</span>
+			                <em><i class="fa fa-hart" aria-hidden="true"></i>125</em> </div>
+			             </div>
+			             <?php 
+		        	} 
+		        	?>
+			             
+		            </div>
+		            <!-- Blog list -->
+		        	</div>
+
+		        
+		        	<!-- Blog -->
+
+		        	  	<!-- Gallery -->
+		        	<div class="col-lg-8 col-xs-12">
+		            <div class="gallery">
+
+		              	<!-- Secondary heading -->
+		        		<div class="sec-heading">
+		        			<h3>Gallery <span class="theme-color">Bookshop</span></h3>
+		        			<a class="view-all" href="../SuccessTalk2/index.php">View All<i class="fa fa-angle-double-right"></i></a>
+		        		</div>
+		        		<!-- Secondary heading -->
+
+		        		<!-- Gallery List -->
+			            <ul>
+			                <li >
+			                  	<div class="gallery-figure"> 
+			                  		<img src="images/gallery/1.jpg" alt="">
+			                  		<div class="overlay">
+			                  			<ul class="position-center-x">
+			                  				<li><a href="#"><i class="fa fa-heart"></i>Likes</a></li>
+			                  				<li><a href="images/gallery/1.jpg" data-rel="prettyPhoto[gallery]"></a></li>
+			                  			</ul>
+			                  		</div>
+			                  	</div>
+			                </li>
+			                <li >
+			                  	<div class="gallery-figure">
+			                  		<img src="images/gallery/2.jpg" alt="">
+			                  		<div class="overlay">
+			                  			<ul class="position-center-x">
+			                  				<li><a href="#"><i class="fa fa-heart"></i>Likes</a></li>
+			                  				<li><a href="images/gallery/2.jpg" data-rel="prettyPhoto[gallery]"></a></li>
+			                  			</ul>
+			                  		</div>
+			                  	</div>
+			                </li>
+			                <li>
+			                  	<div class="gallery-figure">
+			                  		<img src="images/gallery/3.jpg" alt="">
+			                  		<div class="overlay">
+			                  			<ul class="position-center-x">
+			                  				<li><a href="#"><i class="fa fa-heart"></i>Likes</a></li>
+			                  				<li><a href="images/gallery/3.jpg" data-rel="prettyPhoto[gallery]"></a></li>
+			                  			</ul>
+			                  		</div>
+			                  	</div>
+			                </li>
+			                <li>
+			                  	<div class="gallery-figure">
+			                  		<img src="images/gallery/4.jpg" alt="">
+			                  		<div class="overlay">
+			                  			<ul class="position-center-x">
+			                  				<li><a href="#"><i class="fa fa-heart"></i>Likes</a></li>
+			                  				<li><a href="images/gallery/4.jpg" data-rel="prettyPhoto[gallery]"></a></li>
+			                  			</ul>
+			                  		</div>
+			                  	</div>
+			                </li>
+			                <li>
+			                  	<div class="gallery-figure">
+			                  		<img src="images/gallery/5.jpg" alt="">
+			                  		<div class="overlay">
+			                  			<ul class="position-center-x">
+			                  				<li><a href="#"><i class="fa fa-heart"></i>Likes</a></li>
+			                  				<li><a href="images/gallery/5.jpg" data-rel="prettyPhoto[gallery]"></i></a></li>
+			                  			</ul>
+			                  		</div>
+			                  	</div>
+			                </li>
+			                <li>
+			                  	<div class="gallery-figure">
+			                  		<img src="images/gallery/6.jpg" alt="">
+			                  		<div class="overlay">
+			                  			<ul class="position-center-x">
+			                  				<li><a href="#"><i class="fa fa-heart"></i>Likes</a></li>
+			                  				<li><a href="images/gallery/6.jpg" data-rel="prettyPhoto[gallery]"></a></li>
+			                  			</ul>
+			                  		</div>
+			                  	</div>
+			                </li>
+			            </ul>
+			            <!-- Gallery List -->
+
+		            </div>
+		        	</div>
+		        	<!-- Gallery -->
+
+		      </div>
+		  	</div>
+		</section>
+		<!-- Blog Nd Gallery--> 
+
+	
+	</main>
+	<!-- Main Content -->
+
+</nav>
+<!-- Slide Menu -->
+
+
+
+
+
+<!-- Java Script -->
+<script src="js/vendor/jquery.js"></script>        
+<script src="js/vendor/bootstrap.min.js"></script>
+<!--<script src="http://maps.google.com/maps/api/js?sensor=false"></script>-->
+<script src="js/gmap3.min.js"></script>					
+<script src="js/datepicker.js"></script>					
+<script src="js/contact-form.js"></script>					
+<script src="js/bigslide.js"></script>							
+<script src="js/3d-book-showcase.js"></script>					
+<script src="js/turn.js"></script>							
+<script src="js/jquery-ui.js"></script>								
+<script src="js/mcustom-scrollbar.js"></script>					
+<script src="js/timeliner.js"></script>					
+<script src="js/parallax.js"></script>			   	 
+<script src="js/countdown.js"></script>	
+<script src="js/countTo.js"></script>		
+<script src="js/owl-carousel.js"></script>	
+<script src="js/bxslider.js"></script>	
+<script src="js/appear.js"></script>		 		
+<script src="js/sticky.js"></script>			 		
+<script src="js/prettyPhoto.js"></script>			
+<script src="js/isotope.pkgd.js"></script>					 
+<script src="js/wow-min.js"></script>			
+<script src="js/classie.js"></script>					
+<script src="js/main.js"></script>		
+
+<!-- Switcher JS -->
+<script type="text/javascript" src="switcher/cookie.js"></script>
+<script type="text/javascript" src="switcher/colorswitcher.js"></script>
+<!-- Switcher JS -->
+
+</body>
 </html>
